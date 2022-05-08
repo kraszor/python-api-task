@@ -14,7 +14,7 @@ class Word:
         self._definition = ""
         self._pronunciation = ""
 
-    # getters for class attributes
+    # getters for the class attributes
 
     def get_api_url(self):
         return self._api_url
@@ -28,7 +28,7 @@ class Word:
     def get_pronunciation(self):
         return self._pronunciation
 
-    # setters for class attributes
+    # setters for the class attributes
 
     def set_api_url(self, new_api_url):
         self._api_url = new_api_url
