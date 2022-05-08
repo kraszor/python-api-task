@@ -13,6 +13,7 @@ def main():
         if number < 5 or number > 20:
             print("The number is not between 5 and 20! Try again!")
             continue
+        print("It may take a few seconds...\n")
         output = Output(number)
         output.get_num_words()
         print(f'\nYour {number} random words:\n')

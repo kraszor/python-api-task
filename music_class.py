@@ -1,5 +1,6 @@
 import requests
 import sys
+import time
 
 
 """
@@ -54,7 +55,13 @@ class Music:
 
     def get_music_from_word(self, index):
         try:
-            r = requests.get(self.get_api_url()).json()['recordings']
+            r = requests.get(self.get_api_url())
+            status = r.status_code
+            while status == 503:
+                time.sleep(1)
+                r = requests.get(self.get_api_url())
+                status = r.status_code
+            r = r.json()['recordings']
             r = r[index]
             self.set_title(r['title'])
             self.set_artist(r['artist-credit'][0]['name'])

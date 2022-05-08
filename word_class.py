@@ -1,5 +1,6 @@
 import requests
 import sys
+import json
 
 
 """
@@ -47,11 +48,15 @@ class Word:
 
     def get_word_data(self):
         try:
-            r = requests.get(self.get_api_url()).json()
+            r = requests.get(self.get_api_url())
+            r = r.json()
             self.set_word(r[0]["word"])
             self.set_definition(r[0]["definition"])
             self.set_pronunciation(r[0]["pronunciation"])
         # critical error, the program can't work with invalid API's URL
+        except json.decoder.JSONDecodeError:
+            self.get_word_data()
+
         except (requests.exceptions.RequestException, KeyError):
             print("Invalid API's URL error!")
             sys.exit()
