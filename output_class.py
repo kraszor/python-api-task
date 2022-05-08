@@ -34,7 +34,7 @@ class Output:
     def get_word_obj(self):
         return self._word_obj
 
-    def get_muscic_obj(self):
+    def get_music_obj(self):
         return self._music_obj
 
     # setters for the class' atributes
@@ -80,7 +80,7 @@ class Output:
     # getting song for words collected in list
 
     def get_music_from_word(self):
-        songs_list = self.get_songs_list()
+        songs_list = self.get_songs()
         words_list = sorted(self.get_words())
         i = 0
         while i < len(words_list):
@@ -101,7 +101,7 @@ class Output:
 
     def __str__(self):
         words = sorted(self.get_words())
-        songs = self.get_songs_list()
+        songs = self.get_songs()
         txt = ""
         for i in range(0, len(words)):
             txt += words[i] + "\n"
