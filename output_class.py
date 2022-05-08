@@ -56,3 +56,55 @@ class Output:
 
     def set_music_obj(self, word):
         self._music_obj = Music(word)
+
+    # getting n random words, where n equals the number entered by the user
+
+    def get_num_words(self):
+        i = 0
+        words_data = self.get_words_data()
+        words = self.get_words()
+        word = self.get_word_obj()
+        while i < self.get_number():
+            word.get_word_data()
+            if str(word) not in words_data:
+                words_data.append(str(word))
+                words.append(word.get_word())
+                i += 1
+            else:
+                continue
+
+    def display_random_words(self):
+        for elem in self.get_words_data():
+            print(elem)
+
+    # getting song for words collected in list
+
+    def get_music_from_word(self):
+        songs_list = self.get_songs_list()
+        words_list = sorted(self.get_words())
+        i = 0
+        while i < len(words_list):
+            self.set_music_obj(words_list[i])
+            music = self.get_music_obj()
+            try:
+                music.get_music_from_word(0)
+                if str(music) not in songs_list:
+                    songs_list.append(str(music))
+                    i += 1
+                else:
+                    continue
+            except IndexError:
+                songs_list.append("No recording found!\n")
+                i += 1
+
+    # creating a string representation of an object
+
+    def __str__(self):
+        words = sorted(self.get_words())
+        songs = self.get_songs_list()
+        txt = ""
+        for i in range(0, len(words)):
+            txt += words[i] + "\n"
+            txt += "A song with the above word in title:\n"
+            txt += songs[i] + "\n"
+        return txt
