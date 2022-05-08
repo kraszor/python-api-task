@@ -105,6 +105,6 @@ class Output:
         txt = ""
         for i in range(0, len(words)):
             txt += words[i] + "\n"
-            txt += "A song with the above word in title:\n"
+            txt += "A song with the above word in the title:\n"
             txt += songs[i] + "\n"
         return txt
