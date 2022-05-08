@@ -1,4 +1,5 @@
 import requests
+import sys
 
 
 """
@@ -41,3 +42,28 @@ class Word:
 
     def set_pronunciation(self, new_pronun):
         self._pronunciation = new_pronun
+
+    # getting words' data from the api
+
+    def get_word_data(self):
+        try:
+            r = requests.get(self.get_api_url()).json()
+            self.set_word(r[0]["word"])
+            self.set_definition(r[0]["definition"])
+            self.set_pronunciation(r[0]["pronunciation"])
+        # critical error, the program can't work with invalid API's URL
+        except (requests.exceptions.RequestException, KeyError):
+            print("Invalid API's URL error!")
+            sys.exit()
+
+    # creating a string representation of an object
+
+    def __str__(self):
+        info = """
+                Word: {}\n
+                Definition: {}\n
+                Pronunciation: {}\n
+               """.format(self.get_word(),
+                          self.get_definition(),
+                          self.get_pronunciation())
+        return info
